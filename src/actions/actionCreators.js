@@ -1,4 +1,4 @@
-import { ADD_SERVICE, REMOVE_SERVICE, CHANGE_SERVICE_FIELD, EDIT_SERVICE, CLEAR_SERVICE } from './actionTypes';
+import { ADD_SERVICE, REMOVE_SERVICE, CHANGE_SERVICE_FIELD, EDIT_SERVICE, CLEAR_SERVICE, FILTER_SERVICE, RENDER_FILTERED_SERVICES } from './actionTypes';
 
 export function addService(id, name, price) {
   return {type: ADD_SERVICE, payload: {id, name, price}};
@@ -18,4 +18,12 @@ export function editService(editId, editName, editPrice) {
 
 export function clearService() {
   return {type: CLEAR_SERVICE};
+}
+
+export function filterService(name, value) {
+  return {type: FILTER_SERVICE, payload: {name, value}};
+}
+
+export function renderFilterServices(filter) {
+  return {type: RENDER_FILTERED_SERVICES, filter};
 }

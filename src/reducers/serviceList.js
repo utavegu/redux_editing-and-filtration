@@ -1,4 +1,4 @@
-import {ADD_SERVICE, REMOVE_SERVICE} from '../actions/actionTypes'
+import {ADD_SERVICE, REMOVE_SERVICE, RENDER_FILTERED_SERVICES} from '../actions/actionTypes'
 
 let i = 1;
 const initialState = [
@@ -9,7 +9,9 @@ const initialState = [
 ];
 
 export default function serviceListReducer(state = initialState, action) {
+
   switch (action.type) {
+
     case ADD_SERVICE:
       let {id, name, price} = action.payload;
       if (id===0) {
@@ -23,9 +25,22 @@ export default function serviceListReducer(state = initialState, action) {
           return [...state];
         } 
       })
+
     case REMOVE_SERVICE:
       const {removeId} = action.payload;
       return state.filter(service => service.id !== removeId);
+
+    case RENDER_FILTERED_SERVICES:
+      const filter = action.filter;
+      const stateForFiltred = state; // Бесполезно... стэйт всё равно меняется при ретёрне из редюсера
+      if (filter === '') {
+        return state;
+      } else {
+        return stateForFiltred.filter(function(stateItem) {
+          return stateItem.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+        })
+      }
+
     default:
       return state;
   }

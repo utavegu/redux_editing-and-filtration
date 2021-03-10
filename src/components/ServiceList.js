@@ -5,7 +5,7 @@ import {removeService, editService, clearService} from '../actions/actionCreator
 function ServiceList() {
   const items = useSelector(state => state.serviceList);
   const dispatch = useDispatch();
-
+  
   const handleRemove = id => {
     dispatch(removeService(id));
     dispatch(clearService());
