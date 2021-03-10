@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {changeServiceField, addService, clearService, filterService, renderFilterServices} from '../actions/actionCreators';
+import {changeServiceField, addService, clearService, filterService} from '../actions/actionCreators';
 
 function ServiceAdd() {
 	const item = useSelector(state => state.serviceAdd);
@@ -26,25 +26,19 @@ function ServiceAdd() {
     dispatch(filterService(name, value));
   }
 
-  const filterSubmit = evt => {
-    evt.preventDefault();
-    dispatch(renderFilterServices(filter.filter));
-  }
-
 	return (
-    <>
 		<form onSubmit={handleSubmit}>
 			<input name='name' onChange={handleChange} value={item.name} />
 			<input name='price' onChange={handleChange} value={item.price} />
       <div>Режим: {(item.id === 0) ? 'добавление' : 'редактирование'}</div>
 			<button type='submit'>Сохранить</button>
       <button onClick={() => handleClear()} type='button'>Отмена</button>
+      <p>
+        <label> 
+          Фильтрация <input name='filter' onChange={handleFilter} value={filter.filter}></input>
+        </label>
+      </p>
 		</form>
-    <form onSubmit={filterSubmit}>
-      <input name='filter' onChange={handleFilter} value={filter.filter}></input>
-      <button type="submit">Применить фильтр</button>
-    </form>
-    </>
 	);
 }
 
