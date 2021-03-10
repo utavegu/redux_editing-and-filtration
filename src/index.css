@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.button-edit {
+  background-image: url("./img/mode_edit-black-18dp.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+}
